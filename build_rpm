@@ -1,0 +1,8 @@
+#! /bin/bash
+
+#echo "Running tests"
+#./run_test
+
+echo "Building.."
+python setup.py bdist_rpm --post-install support/post_install.sh --pre-install support/pre_install.sh
+	

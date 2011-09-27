@@ -1,0 +1,87 @@
+#!/bin/bash
+#
+# gearman_geodis        Startup script for the Gearman Geodis Worker
+#
+# description: Gearman Geodis is a python based gearman worker running geodis
+# config: /etc/sysconfig/gearman_geodis.sysconfig
+# pidfile: /var/run/gearman_geodis/gearman_geodis.pid
+#
+### BEGIN INIT INFO
+# Provides: gearman_geodis
+# Required-Start: $local_fs $network
+# Required-Stop: $local_fs $network
+# Default-Start:
+# Default-Stop:
+# Short-Description: start and stop the Gearman Geodis worker
+# Description: Gearman Geodis is a python based gearman worker running geodis
+### END INIT INFO
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+if [ -f /etc/sysconfig/gearman_geodis.sysconfig ]; then
+        . /etc/sysconfig/gearman_geodis.sysconfig
+fi
+
+[ -z "${LOCKFILE}" ] && lockfile="/var/lock/subsys/gearman_geodis"
+
+gearman_geodis=/usr/bin/gearman_geodisd.py
+prog=gearman_geodisd.py
+#err_log=/var/log/gearman_geodis/gearman_geodis.err
+#out_log=/var/log/gearman_geodis/gearman_geodis.out
+
+RETVAL=0
+
+start() {
+        echo -n $"Starting $prog: "
+	for i in `seq 1 $PROC_COUNT`; do
+		pidfile="/var/run/gearman_geodis/gearman_geodis.$i.pid"
+	        daemon --pidfile=$pidfile --user=gearman_geodis $gearman_geodis $pidfile start $OPTIONS
+        	RETVAL=$?
+        	[ $RETVAL = 0 ] && (touch $lockfile)
+	done
+	echo
+        return $RETVAL
+}
+
+stop() {
+	echo -n $"Stopping $prog: "
+	for i in `seq 1 $PROC_COUNT`; do
+		pidfile="/var/run/gearman_geodis/gearman_geodis.$i.pid"
+		$gearman_geodis $pidfile stop
+		RETVAL=$?
+	done
+	echo
+	[ $RETVAL = 0 ] && rm -f $lockfile
+}
+pidfile="/var/run/gearman_geodis/gearman_geodis.1.pid"
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  status)
+        status -p $pidfile $gearman_geodis
+	RETVAL=$?
+	;;
+  restart|reload)
+	stop
+	start
+	;;
+  condrestart|try-restart)
+	if status -p $pidfile $gearman_geodis >&/dev/null; then
+		stop
+		start
+	fi
+	;;
+  *)
+	echo $"Usage: $prog {start|stop|restart|reload|condrestart|status|help}"
+	RETVAL=3
+esac
+
+exit $RETVAL
+

@@ -1,0 +1,5 @@
+## Settings for gearman_geodis
+#Default settings are to create 2 workers processes, 
+# connect to default Redis and gearmand ports on localhost
+OPTIONS="localhost:6379:9 localhost:4730"
+PROC_COUNT=2
