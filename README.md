@@ -26,17 +26,17 @@ The Gearman request body must be a string of format of:
 where lat and lon are ASCII string representations of float.
         
 The job response upon successful lookup is a JSON string of format:
-```html
+
 	{'city': '<city>', 'zip': '<zip>', 'country': '<country>', 
         'lat': '<lat>', 'lon': '<lon>', 'state': '<state>'}
-```        
+       
 Fields:
-        city - City name.
-        zip - ZIP code (optional)
-        country - Country
-        lat - Latitude of found location
-        lon - Longitude of found location
-        state - State (optional)
+        + **city** City name
+        + **zip** - ZIP code (optional)
+        + **country** - Country
+        + **lat** - Latitude
+        + **lon** - Longitude
+        + **state** - State (optional)
 
 The zip and state fields only appear for locations within the United States.
         
