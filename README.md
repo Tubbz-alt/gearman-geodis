@@ -8,10 +8,12 @@ The associated 'gearman_geodis' service, that is installed with the optional RPM
 creates a process based worker pool. The number of processes in the worker 
 pool is controlled by the gearman_geodis.sysconfig file.
 
-Gearman: gearman.org
+Gearman: http://gearman.org
+
 Geodis: https://github.com/doat/geodis
 
 The associated RPM package installs the service 'gearman_geodis'.
+
 The gearman_geodis service runs as user gearman_geodis.
 
 Gearman Protocol
@@ -24,9 +26,10 @@ The Gearman request body must be a string of format of:
 where lat and lon are ASCII string representations of float.
         
 The job response upon successful lookup is a JSON string of format:
+``` html
 	{'city': '<city>', 'zip': '<zip>', 'country': '<country>', 
         'lat': '<lat>', 'lon': '<lon>', 'state': '<state>'}
-        
+```        
 Fields:
         city - City name.
         zip - ZIP code (optional)
