@@ -48,10 +48,10 @@ Where error is a string description.
 
 Dependencies (Build / Test / Running)
 -------------------------------------
-[geodis] https://github.com/doat/geodis
-[geohasher] http://pypi.python.org/pypi/geohasher
-[python-gearman] http://pypi.python.org/pypi/gearman/
-[redis-py] https://github.com/andymccurdy/redis-py
++ **geodis** https://github.com/doat/geodis
++ **geohasher** http://pypi.python.org/pypi/geohasher
++ **python-gearman** http://pypi.python.org/pypi/gearman/
++ **redis-py** https://github.com/andymccurdy/redis-py
 
 
 Building
