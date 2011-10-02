@@ -31,7 +31,8 @@ The job response upon successful lookup is a JSON string of format:
 'lat': '<lat>', 'lon': '<lon>', 'state': '<state>'}
        
 Fields:
-+ **city** City name
+
++ **city** - City name
 + **zip** - ZIP code (optional)
 + **country** - Country
 + **lat** - Latitude
