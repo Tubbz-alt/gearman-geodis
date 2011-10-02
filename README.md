@@ -27,8 +27,7 @@ where lat and lon are ASCII string representations of float.
         
 The job response upon successful lookup is a JSON string of format:
 
-{'city': '<city>', 'zip': '<zip>', 'country': '<country>', 
-'lat': '<lat>', 'lon': '<lon>', 'state': '<state>'}
+`{'city': '<city>', 'zip': '<zip>', 'country': '<country>', 'lat': '<lat>', 'lon': '<lon>', 'state': '<state>'}`
        
 Fields:
 
@@ -42,7 +41,8 @@ Fields:
 The zip and state fields only appear for locations within the United States.
         
 An error response is a JSON string of format:
-        {'error':'<error>'}
+        `{'error':'<error>'}`
+        
 Where error is a string description.
 
 
