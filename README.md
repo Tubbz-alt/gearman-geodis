@@ -26,7 +26,7 @@ The Gearman request body must be a string of format of:
 where lat and lon are ASCII string representations of float.
         
 The job response upon successful lookup is a JSON string of format:
-``` html
+```html
 	{'city': '<city>', 'zip': '<zip>', 'country': '<country>', 
         'lat': '<lat>', 'lon': '<lon>', 'state': '<state>'}
 ```        
